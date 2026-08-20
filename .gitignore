@@ -30,7 +30,8 @@ npm-debug.log*
 .workbuddy/
 
 # ---- 部署包（由源码生成，体积大，不入 git）----
-cysb-platform.zip
+*.zip
+*.b64
 
 # ---- 系统 ----
 .DS_Store
