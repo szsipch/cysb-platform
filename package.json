@@ -1,0 +1,15 @@
+{
+  "name": "mall-inspection-platform",
+  "version": "1.0.0",
+  "description": "商场装修承接查验与整改闭环平台 MVP",
+  "type": "commonjs",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "seed": "node src/seed.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "MIT"
+}
