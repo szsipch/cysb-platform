@@ -1,0 +1,22 @@
+# 开发临时文件不要进镜像
+_shots/
+_chrome_tmp/
+.workbuddy/
+data/server-*.log
+data/logs/
+data/reports/
+# 测试/调试脚本
+_*.js
+_*.tmp
+_*.bin
+.disposable_*
+*.tmp
+# Node（项目无 node_modules）
+node_modules/
+npm-debug.log*
+# IDE
+.vscode/
+.idea/
+# OS
+.DS_Store
+Thumbs.db
