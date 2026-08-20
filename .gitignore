@@ -1,0 +1,37 @@
+# ---- 临时/调试脚本 ----
+_*.js
+_*.tmp
+_*.bin
+_*.json
+_disposable_*
+.disposable_*
+.*_acct.js
+
+# ---- 云函数重复打包（根目录已有完整源码 server.js + scf.js）----
+cloudfunctions/
+
+# ---- 本地验证产物 ----
+_shots/
+_chrome_tmp/
+_tunnel/
+
+# ---- 日志 ----
+*.log
+data/*.log
+data/server-*.log
+data/logs/
+data/reports/
+
+# ---- 依赖与缓存 ----
+node_modules/
+npm-debug.log*
+
+# ---- WorkBuddy 内部 ----
+.workbuddy/
+
+# ---- 部署包（由源码生成，体积大，不入 git）----
+cysb-platform.zip
+
+# ---- 系统 ----
+.DS_Store
+Thumbs.db
