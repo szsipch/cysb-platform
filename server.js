@@ -1684,7 +1684,22 @@ function serveStatic(req, res, pathname) {
   const headers = { 'Content-Type': MIME[ext] || 'application/octet-stream' };
   if (ext === '.html') headers['Cache-Control'] = 'no-cache';
   else headers['Cache-Control'] = 'public, max-age=' + LONG_CACHE;
-  respond(res._req || { headers: {} }, res, 200, headers, fs.readFileSync(fp));
+  let buf = fs.readFileSync(fp);
+  // ★ HTML 自动内联 CSS（避免 Cloudflare CDN 在国内访问慢/被 GFW 阻断时样式丢失）
+  if (ext === '.html') {
+    try {
+      const cssPath = path.join(PUBLIC_DIR, 'css', 'style.css');
+      if (fs.existsSync(cssPath)) {
+        const css = fs.readFileSync(cssPath, 'utf8');
+        const s = buf.toString('utf8').replace(
+          /<link\s+rel="stylesheet"\s+href="\/css\/style\.css\?v=[^"]*"\s*\/?\s*>/,
+          '<style>' + css + '</style>'
+        );
+        buf = Buffer.from(s, 'utf8');
+      }
+    } catch (e) { /* 失败时原样返回，不影响 HTML 渲染 */ }
+  }
+  respond(res._req || { headers: {} }, res, 200, headers, buf);
 }
 
 // ---------- server ----------
